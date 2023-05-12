@@ -7,13 +7,13 @@ const routes: Routes = [
     path: 'contacts',
     loadChildren: () =>
       import('./contacts/contacts.module').then((m) => m.ContactsModule),
-    canActivate:[AuthGuard]
+    // canActivate:[AuthGuard]
   },
   {
     path: 'users',
     loadChildren: () =>
       import('./users/users.module').then((m) => m.UsersModule),
-      canActivate:[AuthGuard]
+      // canActivate:[AuthGuard]
   },
   {path:'',redirectTo:'contacts',pathMatch:'full'},
 ];

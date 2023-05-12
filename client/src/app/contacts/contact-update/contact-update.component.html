@@ -1,8 +1,26 @@
-<div class="update-container">
-  Name:<input [(ngModel)]="contact.name">
-  Phone:<input [(ngModel)]="contact.phone">
-  Address:<input [(ngModel)]="contact.address">
-  Notes:<input [(ngModel)]="contact.notes">
-  <button  class="btn btn-success" (click)="Update()">Update</button>
-  <a class="btn btn-primary" routerLink="/contacts">Back</a>
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">Add New Contact</h4>
+  <hr>
+  <p class="mb-0">You can update contact name , phone , address , notes</p>
 </div>
+
+<form (ngSubmit)="Update()">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input [(ngModel)]="contact.name" name="name" type="text" class="form-control" id="name" required>
+  </div>
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone</label>
+    <input [(ngModel)]="contact.phone" name="phone" type="text" class="form-control" id="phone" minlength="11" maxlength="11" required pattern="/^[0-9]{11}$/">
+  </div>
+  <div class="mb-3">
+    <label for="address" class="form-label">Address</label>
+    <input [(ngModel)]="contact.address" name="address" type="text" class="form-control" id="address" required minlength="3">
+  </div>
+  <div class="mb-3">
+    <label for="notes" class="form-label">Notes</label>
+    <input [(ngModel)]="contact.notes" name="notes" type="text" class="form-control" id="notes">
+  </div>
+  <button type="submit" class="btn btn-success">Update</button>
+  <a class="btn btn-warning m-2" routerLink="/contacts">Back</a>
+</form>
