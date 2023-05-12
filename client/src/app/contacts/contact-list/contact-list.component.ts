@@ -21,7 +21,6 @@ export class ContactListComponent implements OnInit {
   lockedContacts: Set<string> = new Set();
 
   isContactLocked(contactId: string): boolean {
-    console.log(this.contactLockService.isContactLocked(contactId));
     return this.contactLockService.isContactLocked(contactId);
   }
 
@@ -97,5 +96,5 @@ export class ContactListComponent implements OnInit {
     // }
   }
 
-  
+
 }

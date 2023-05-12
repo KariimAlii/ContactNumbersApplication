@@ -13,7 +13,6 @@ export class ContactLockService {
     this.lockedContacts.add(contactId);
     this.editingUsers[contactId] = editingUser;
     this.lockedContacts$.next(this.lockedContacts);
-    console.log('contact locked');
   }
 
   unlockContact(contactId: string) {
