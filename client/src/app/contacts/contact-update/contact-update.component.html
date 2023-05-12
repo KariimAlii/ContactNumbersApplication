@@ -1,0 +1,8 @@
+<div class="update-container">
+  Name:<input [(ngModel)]="contact.name">
+  Phone:<input [(ngModel)]="contact.phone">
+  Address:<input [(ngModel)]="contact.address">
+  Notes:<input [(ngModel)]="contact.notes">
+  <button  class="btn btn-success" (click)="Update()">Update</button>
+  <a class="btn btn-primary" routerLink="/contacts">Back</a>
+</div>

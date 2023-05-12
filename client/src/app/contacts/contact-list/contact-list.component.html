@@ -1,0 +1,67 @@
+<div class="header">
+  <a routerLink="/contacts/add" class="btn btn-success m-2 add-btn">Add</a>
+  <div class="btn-group m-2">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      City
+    </button>
+    <ul class="dropdown-menu">
+      <li 
+        *ngFor="let city of cities"
+        (click)="filterCity(city)"
+        class="dropdown-item city-selection"
+      >
+        {{city}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-primary">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">Notes</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of pageContacts[currentPage-1]">
+        <td scope="row">{{contact.name}}</td>
+        <td>{{contact.phone}}</td>
+        <td>{{contact.address}}</td>
+        <td>{{contact.notes}}</td>
+        <td>
+          <a [routerLink]="['/contacts','details',contact._id]" [ngClass]="{'disable-link' : isContactLocked(contact._id), 'btn' : true , 'btn-primary':true}">Details</a>
+        </td>
+        <td>
+          <a [routerLink]="['/contacts','edit',contact._id]" [ngClass]="{'disable-link' : isContactLocked(contact._id) , 'btn' : true , 'btn-success':true}">Update</a>
+        </td>
+        <td>
+          <a [routerLink]="['/contacts','delete',contact._id]" [ngClass]="{'disable-link' : isContactLocked(contact._id), 'btn' : true , 'btn-danger':true}">Delete</a>
+        </td>
+        <td>
+          <span *ngIf="isContactLocked(contact._id)" class="locked-by">
+            (locked by {{ getEditingUser(contact._id) }})
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ul class="pagination">
+  <li
+    *ngFor="let page of pages"
+    (click)="changePage(page)"
+  >
+    <span class="page-link">{{page}}</span>
+  </li>
+</ul>
+
+
+<!-- [[ngClass]="{'page-item': true , 'active': currentPage === page}"] -->
